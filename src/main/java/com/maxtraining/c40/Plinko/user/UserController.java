@@ -36,9 +36,8 @@ public class UserController {
 	@GetMapping("/highscore")
 	public ResponseEntity<User> getHighScore()
 	{
-		Optional<User> user = userRepo.findTopScore();
-		if (user.isEmpty()) return new ResponseEntity(HttpStatus.BAD_REQUEST);
-		return new ResponseEntity(user.get(), HttpStatus.OK);
+		double highscore = userRepo.findTopScore();
+		return new ResponseEntity(highscore, HttpStatus.OK);
 	}
 	@PostMapping
 	public ResponseEntity<User> addNewUser(@RequestBody User user) {

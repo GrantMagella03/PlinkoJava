@@ -9,7 +9,6 @@ public class Ball {
 		return posX;
 	}
 	
-	
 	public void setPosX(int posX) {
 		this.posX = posX;
 	}

@@ -33,6 +33,7 @@ public class UserController {
 		if (user.isEmpty()) return new ResponseEntity(HttpStatus.NOT_FOUND);
 		return new ResponseEntity(user.get(), HttpStatus.OK);
 	}
+	
 	@GetMapping("/highscore")
 	public ResponseEntity<User> getHighScore()
 	{
@@ -52,6 +53,7 @@ public class UserController {
 		userRepo.save(user);
 		return new ResponseEntity(user, HttpStatus.OK);
 	}
+	@SuppressWarnings("rawtypes")
 	@DeleteMapping("{id}")
 	public ResponseEntity deleteUser(@PathVariable int id) {
 		if (id <= 0) return new ResponseEntity(HttpStatus.BAD_REQUEST);

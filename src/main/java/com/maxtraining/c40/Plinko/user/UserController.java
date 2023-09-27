@@ -33,12 +33,12 @@ public class UserController {
 		if (user.isEmpty()) return new ResponseEntity(HttpStatus.NOT_FOUND);
 		return new ResponseEntity(user.get(), HttpStatus.OK);
 	}
+	
 	@GetMapping("/highscore")
 	public ResponseEntity<User> getHighScore()
 	{
-		Optional<User> user = userRepo.findTopScore();
-		if (user.isEmpty()) return new ResponseEntity(HttpStatus.BAD_REQUEST);
-		return new ResponseEntity(user.get(), HttpStatus.OK);
+		double highscore = userRepo.findTopScore();
+		return new ResponseEntity(highscore, HttpStatus.OK);
 	}
 	@PostMapping
 	public ResponseEntity<User> addNewUser(@RequestBody User user) {
@@ -53,6 +53,7 @@ public class UserController {
 		userRepo.save(user);
 		return new ResponseEntity(user, HttpStatus.OK);
 	}
+	@SuppressWarnings("rawtypes")
 	@DeleteMapping("{id}")
 	public ResponseEntity deleteUser(@PathVariable int id) {
 		if (id <= 0) return new ResponseEntity(HttpStatus.BAD_REQUEST);
